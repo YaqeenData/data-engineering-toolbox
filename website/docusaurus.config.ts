@@ -61,6 +61,8 @@ const config: Config = {
   // ==========================================
 
   themeConfig: {
+
+    image: 'img/datum-og.png',
     // ----------------------------------------
     // GLOBAL SEO METADATA
     // ----------------------------------------
@@ -80,8 +82,10 @@ const config: Config = {
       },
       {
         name: 'twitter:card',
-        content: 'summary',
+        content: 'summary_large_image',
       },
+
+      
     ],
 
     // ----------------------------------------
