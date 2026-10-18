@@ -47,10 +47,10 @@ export default function AppearanceSettings({
 }): React.JSX.Element {
   const [palette, setPalette] = useState<Palette>('teal');
   const [hydrated, setHydrated] = useState(false);
+
   const {colorMode, setColorMode} = useColorMode();
 
-  
-
+  // 1. Restore saved palette on initial load.
   useEffect(() => {
     let initial: Palette = 'teal';
 
@@ -64,36 +64,17 @@ export default function AppearanceSettings({
       // Browser storage might be unavailable.
     }
 
-
-    useEffect(() => {
-    // Don't update the favicon before preferences are ready.
-    if (!hydrated) return;
-
-    if (colorMode !== 'light' && colorMode !== 'dark') {
-        return;
-    }
-
-    const favicon = document.querySelector<HTMLLinkElement>(
-        'link[rel="icon"]'
-    );
-
-    if (!favicon) return;
-
-    const faviconPath =
-        `/img/favicons/${palette}-${colorMode}.png`;
-
-    favicon.href = faviconPath;
-    favicon.type = 'image/png';
-
-    }, [palette, colorMode, hydrated]);
-
-
     setPalette(initial);
     document.documentElement.dataset.accent = initial;
     setHydrated(true);
 
     const syncPalette = (event: Event) => {
-      setPalette((event as CustomEvent<Palette>).detail);
+      const next = (event as CustomEvent<Palette>).detail;
+
+      if (PALETTES.some((p) => p.id === next)) {
+        setPalette(next);
+        document.documentElement.dataset.accent = next;
+      }
     };
 
     window.addEventListener(CHANGE_EVENT, syncPalette);
@@ -103,8 +84,25 @@ export default function AppearanceSettings({
     };
   }, []);
 
+  // 2. Update favicon when palette or display mode changes.
+  useEffect(() => {
+    if (!hydrated) return;
 
+    if (colorMode !== 'light' && colorMode !== 'dark') {
+      return;
+    }
 
+    const favicon = document.querySelector<HTMLLinkElement>(
+      'link[rel="icon"]'
+    );
+
+    if (!favicon) return;
+
+    favicon.href = `/img/favicons/${palette}-${colorMode}.png`;
+    favicon.type = 'image/png';
+  }, [palette, colorMode, hydrated]);
+
+  // 3. Change palette and persist selection.
   function selectPalette(next: Palette) {
     setPalette(next);
     document.documentElement.dataset.accent = next;
@@ -120,93 +118,77 @@ export default function AppearanceSettings({
     );
   }
 
-    useEffect(() => {
-    if (!hydrated) return;
-
-    if (colorMode !== 'light' && colorMode !== 'dark') {
-        return;
-    }
-
-    const favicon = document.querySelector<HTMLLinkElement>(
-        'link[rel="icon"]'
-    );
-
-    if (!favicon) return;
-
-    favicon.href = `/img/favicons/${palette}-${colorMode}.png`;
-    favicon.type = 'image/png';
-
-    }, [palette, colorMode, hydrated]);
-
+  // 4. Appearance selector UI.
   const menu = (
     <details className={styles.details}>
-
-        <summary
+      <summary
         className={styles.trigger}
         aria-label="Appearance settings"
         title="Customize appearance"
-        >
+      >
         <span aria-hidden="true">🎨</span>
         <span className={styles.triggerLabel}></span>
-        </summary>
+      </summary>
 
-
-    <div className={styles.panel}>
+      <div className={styles.panel}>
         <strong>Color palette</strong>
 
         <div className={styles.paletteGrid}>
-            {PALETTES.map((option) => (
+          {PALETTES.map((option) => (
             <button
-                key={option.id}
-                type="button"
-                className={styles.paletteButton}
-                aria-pressed={palette === option.id}
-            onClick={() => selectPalette(option.id)}
+              key={option.id}
+              type="button"
+              className={styles.paletteButton}
+              aria-pressed={palette === option.id}
+              onClick={() => selectPalette(option.id)}
             >
-            <span className={styles.swatches}>
+              <span className={styles.swatches}>
                 <span style={{background: option.light}} />
                 <span style={{background: option.dark}} />
-            </span>
+              </span>
 
-                {option.label}
+              {option.label}
             </button>
-            ))}
+          ))}
         </div>
 
         <strong>Display mode</strong>
 
         <div className={styles.modeButtons}>
-            <button
+          <button
             type="button"
+            aria-label="Switch to light mode"
             aria-pressed={
-                hydrated ? colorMode === 'light' : undefined
+              hydrated ? colorMode === 'light' : undefined
             }
             onClick={() => setColorMode('light')}
-            >
-            ☀️
-            </button>
+          >
+            <span aria-hidden="true">☀️</span>
+          </button>
 
-            <button
+          <button
             type="button"
+            aria-label="Switch to dark mode"
             aria-pressed={
-                hydrated ? colorMode === 'dark' : undefined
+              hydrated ? colorMode === 'dark' : undefined
             }
             onClick={() => setColorMode('dark')}
-            >
-            🌙
-            </button>
+          >
+            <span aria-hidden="true">🌙</span>
+          </button>
         </div>
-        </div>
+      </div>
     </details>
-    );
+  );
 
-    return mobile ? (
+  // 5. Render desktop or mobile appearance menu.
+  return mobile ? (
     <li className={`menu__list-item ${styles.mobileItem}`}>
-        {menu}
+      {menu}
     </li>
-    ) : (
+  ) : (
     <div className={`navbar__item ${styles.desktopItem}`}>
-        {menu}
+      {menu}
     </div>
-    );
+  );
 }

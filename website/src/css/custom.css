@@ -1,62 +1,182 @@
 
+/* =========================================
+   DATUM — DESIGN SYSTEM
+   ========================================= */
+
 /* Default palette: Ocean Teal */
 :root {
   --de-accent-light: #087F78;
   --de-accent-dark: #5EE0CC;
 }
 
-/* Raspberry */
+/* =========================================
+   COLOR PALETTES
+   ========================================= */
+
 :root[data-accent='raspberry'] {
   --de-accent-light: #B4235A;
   --de-accent-dark: #F472A6;
 }
 
-/* Ocean Teal */
 :root[data-accent='teal'] {
   --de-accent-light: #087F78;
   --de-accent-dark: #5EE0CC;
 }
 
-/* Terracotta */
 :root[data-accent='terracotta'] {
   --de-accent-light: #B54725;
   --de-accent-dark: #FFAD83;
 }
 
-/* Midnight Blue */
 :root[data-accent='midnight'] {
   --de-accent-light: #274C8E;
   --de-accent-dark: #8CB8FF;
 }
 
-/* Light mode */
+/* =========================================
+   LIGHT MODE
+   ========================================= */
+
 :root[data-theme='light'] {
   --ifm-color-primary: var(--de-accent-light);
+
+  /* Backgrounds */
+  --ifm-background-color: #F7F6F2;
+  --ifm-background-surface-color: #EFEEE9;
+  --ifm-navbar-background-color: #F7F6F2;
+  --ifm-footer-background-color: #EFEEE9;
+  --ifm-dropdown-background-color: #F7F6F2;
+
+  /* Typography */
+  --ifm-font-color-base: #25282D;
+  --ifm-heading-color: #25282D;
+  --ifm-color-content: #25282D;
+  --ifm-color-content-secondary: #60666C;
+
+  /* Borders */
+  --ifm-color-emphasis-200: #DDDED9;
+  --ifm-toc-border-color: #DDDED9;
+
+  /* Selected text */
+  --datum-selection-bg: color-mix(
+    in srgb,
+    var(--ifm-color-primary) 30%,
+    transparent
+  );
 }
 
-/* Dark mode */
+/* =========================================
+   DARK MODE
+   ========================================= */
+
 :root[data-theme='dark'] {
   --ifm-color-primary: var(--de-accent-dark);
+
+  /* Backgrounds */
+  --ifm-background-color: #191B1D;
+  --ifm-background-surface-color: #25282B;
+  --ifm-navbar-background-color: #191B1D;
+  --ifm-footer-background-color: #25282B;
+  --ifm-dropdown-background-color: #25282B;
+
+  /* Typography */
+  --ifm-font-color-base: #E8EAEB;
+  --ifm-heading-color: #E8EAEB;
+  --ifm-color-content: #E8EAEB;
+  --ifm-color-content-secondary: #B2B9BC;
+
+  /* Borders */
+  --ifm-color-emphasis-200: #373B40;
+  --ifm-toc-border-color: #373B40;
+
+  /* Selected text */
+  --datum-selection-bg: color-mix(
+    in srgb,
+    var(--ifm-color-primary) 35%,
+    transparent
+  );
 }
 
-/* Generate matching shades for Docusaurus */
+/* =========================================
+   AUTOMATIC ACCENT SHADES
+   ========================================= */
+
 :root[data-theme='light'],
 :root[data-theme='dark'] {
-  --ifm-color-primary-dark:
-    color-mix(in srgb, var(--ifm-color-primary) 90%, black);
+  --ifm-color-primary-dark: color-mix(
+    in srgb,
+    var(--ifm-color-primary) 90%,
+    black
+  );
 
-  --ifm-color-primary-darker:
-    color-mix(in srgb, var(--ifm-color-primary) 85%, black);
+  --ifm-color-primary-darker: color-mix(
+    in srgb,
+    var(--ifm-color-primary) 85%,
+    black
+  );
 
-  --ifm-color-primary-darkest:
-    color-mix(in srgb, var(--ifm-color-primary) 75%, black);
+  --ifm-color-primary-darkest: color-mix(
+    in srgb,
+    var(--ifm-color-primary) 75%,
+    black
+  );
 
-  --ifm-color-primary-light:
-    color-mix(in srgb, var(--ifm-color-primary) 90%, white);
+  --ifm-color-primary-light: color-mix(
+    in srgb,
+    var(--ifm-color-primary) 90%,
+    white
+  );
 
-  --ifm-color-primary-lighter:
-    color-mix(in srgb, var(--ifm-color-primary) 85%, white);
+  --ifm-color-primary-lighter: color-mix(
+    in srgb,
+    var(--ifm-color-primary) 85%,
+    white
+  );
 
-  --ifm-color-primary-lightest:
-    color-mix(in srgb, var(--ifm-color-primary) 75%, white);
+  --ifm-color-primary-lightest: color-mix(
+    in srgb,
+    var(--ifm-color-primary) 75%,
+    white
+  );
+
+  /* Interactive elements */
+  --ifm-link-color: var(--ifm-color-primary);
+
+  --ifm-menu-color-background-active: color-mix(
+    in srgb,
+    var(--ifm-color-primary) 12%,
+    transparent
+  );
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+html[data-theme='light'] .footer--light {
+  --ifm-footer-background-color: #EFEEE9;
+  --ifm-footer-color: #25282D;
+  --ifm-footer-link-color: #25282D;
+  --ifm-footer-title-color: #25282D;
+}
+
+html[data-theme='dark'] .footer--light {
+  --ifm-footer-background-color: #25282B;
+  --ifm-footer-color: #E8EAEB;
+  --ifm-footer-link-color: #E8EAEB;
+  --ifm-footer-title-color: #E8EAEB;
+}
+
+/* =========================================
+   DYNAMIC TEXT SELECTION
+   ========================================= */
+
+::selection {
+  background-color: var(--datum-selection-bg);
+  color: var(--ifm-font-color-base);
+}
+
+::-moz-selection {
+  background-color: var(--datum-selection-bg);
+  color: var(--ifm-font-color-base);
 }
