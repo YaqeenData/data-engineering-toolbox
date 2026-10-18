@@ -1,0 +1,179 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 6rem 1.5rem;
+  text-align: center;
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+.heroEyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--ifm-color-primary);
+  margin-bottom: 1.5rem;
+}
+
+.heroBanner h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.15;
+  max-width: 850px;
+  margin: 0 auto 1.5rem;
+}
+
+.heroBanner :global(.hero__subtitle) {
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.8;
+  color: var(--ifm-color-content-secondary);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+  .heroBanner {
+    padding: 4rem 1rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buttons a {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+
+/* Learning paths section */
+
+.pathsSection {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 6rem;
+}
+
+.sectionTitle {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  margin-bottom: 0.75rem;
+}
+
+.sectionDescription {
+  color: var(--ifm-color-content-secondary);
+  max-width: 650px;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+/* Card grid */
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.learningCard {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  min-width: 0;
+
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 14px;
+
+  color: var(--ifm-font-color-base);
+  text-decoration: none;
+
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.learningCard:hover {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-font-color-base);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.learningCard:focus-visible {
+  outline: 3px solid var(--ifm-color-primary);
+  outline-offset: 3px;
+}
+
+/* Main roadmap spans both columns */
+
+.featuredCard {
+  grid-column: 1 / -1;
+}
+
+/* Card content */
+
+.cardLabel {
+  color: var(--ifm-color-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.cardTitle {
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.cardDescription {
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.cardAction {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .pathsSection {
+    padding: 2rem 1rem 4rem;
+  }
+
+  .cardGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .featuredCard {
+    grid-column: auto;
+  }
+
+  .learningCard {
+    padding: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .learningCard {
+    transition: none;
+  }
+
+  .learningCard:hover {
+    transform: none;
+  }
+}
+

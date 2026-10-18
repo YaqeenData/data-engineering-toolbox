@@ -1,0 +1,62 @@
+
+/* Default palette: Ocean Teal */
+:root {
+  --de-accent-light: #087F78;
+  --de-accent-dark: #5EE0CC;
+}
+
+/* Raspberry */
+:root[data-accent='raspberry'] {
+  --de-accent-light: #B4235A;
+  --de-accent-dark: #F472A6;
+}
+
+/* Ocean Teal */
+:root[data-accent='teal'] {
+  --de-accent-light: #087F78;
+  --de-accent-dark: #5EE0CC;
+}
+
+/* Terracotta */
+:root[data-accent='terracotta'] {
+  --de-accent-light: #B54725;
+  --de-accent-dark: #FFAD83;
+}
+
+/* Midnight Blue */
+:root[data-accent='midnight'] {
+  --de-accent-light: #274C8E;
+  --de-accent-dark: #8CB8FF;
+}
+
+/* Light mode */
+:root[data-theme='light'] {
+  --ifm-color-primary: var(--de-accent-light);
+}
+
+/* Dark mode */
+:root[data-theme='dark'] {
+  --ifm-color-primary: var(--de-accent-dark);
+}
+
+/* Generate matching shades for Docusaurus */
+:root[data-theme='light'],
+:root[data-theme='dark'] {
+  --ifm-color-primary-dark:
+    color-mix(in srgb, var(--ifm-color-primary) 90%, black);
+
+  --ifm-color-primary-darker:
+    color-mix(in srgb, var(--ifm-color-primary) 85%, black);
+
+  --ifm-color-primary-darkest:
+    color-mix(in srgb, var(--ifm-color-primary) 75%, black);
+
+  --ifm-color-primary-light:
+    color-mix(in srgb, var(--ifm-color-primary) 90%, white);
+
+  --ifm-color-primary-lighter:
+    color-mix(in srgb, var(--ifm-color-primary) 85%, white);
+
+  --ifm-color-primary-lightest:
+    color-mix(in srgb, var(--ifm-color-primary) 75%, white);
+}

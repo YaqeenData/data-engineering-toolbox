@@ -1,0 +1,148 @@
+
+.desktopItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.details {
+  position: relative;
+}
+
+.trigger {
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+}
+
+.trigger::-webkit-details-marker {
+  display: none;
+}
+
+.trigger:hover {
+  background: var(--ifm-color-emphasis-200);
+}
+
+.trigger:focus-visible,
+.paletteButton:focus-visible,
+.modeButtons button:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 3px;
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 1000;
+
+  width: 310px;
+  max-width: calc(100vw - 2rem);
+  padding: 1.25rem;
+
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-font-color-base);
+
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 12px;
+
+  box-shadow: var(--ifm-global-shadow-md);
+}
+
+.panel strong {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.paletteGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+}
+
+.paletteButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+
+  background: transparent;
+  color: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.paletteButton[aria-pressed='true'],
+.modeButtons button[aria-pressed='true'] {
+  border-color: var(--ifm-color-primary);
+  box-shadow: inset 0 0 0 1px var(--ifm-color-primary);
+}
+
+.swatches {
+  display: flex;
+  flex-shrink: 0;
+  overflow: hidden;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.swatches span {
+  flex: 1;
+}
+
+.modeButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.modeButtons button {
+  padding: 0.65rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Mobile sidebar */
+.mobileItem {
+  padding: 0.5rem 1rem;
+}
+
+.mobileItem .panel {
+  position: static;
+  width: 100%;
+  margin-top: 0.75rem;
+  box-shadow: none;
+}
+
+
+.trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.desktopItem .triggerLabel {
+    display: none;
+}
+
+.mobileItem .triggerLabel {
+    display: inline;
+}
+
+.trigger:hover {
+    background: var(--ifm-color-emphasis-200);
+}
