@@ -49,6 +49,8 @@ export default function AppearanceSettings({
   const [hydrated, setHydrated] = useState(false);
   const {colorMode, setColorMode} = useColorMode();
 
+  
+
   useEffect(() => {
     let initial: Palette = 'teal';
 
@@ -61,6 +63,30 @@ export default function AppearanceSettings({
     } catch {
       // Browser storage might be unavailable.
     }
+
+
+    useEffect(() => {
+    // Don't update the favicon before preferences are ready.
+    if (!hydrated) return;
+
+    if (colorMode !== 'light' && colorMode !== 'dark') {
+        return;
+    }
+
+    const favicon = document.querySelector<HTMLLinkElement>(
+        'link[rel="icon"]'
+    );
+
+    if (!favicon) return;
+
+    const faviconPath =
+        `/img/favicons/${palette}-${colorMode}.png`;
+
+    favicon.href = faviconPath;
+    favicon.type = 'image/png';
+
+    }, [palette, colorMode, hydrated]);
+
 
     setPalette(initial);
     document.documentElement.dataset.accent = initial;
@@ -77,6 +103,8 @@ export default function AppearanceSettings({
     };
   }, []);
 
+
+
   function selectPalette(next: Palette) {
     setPalette(next);
     document.documentElement.dataset.accent = next;
@@ -91,6 +119,24 @@ export default function AppearanceSettings({
       new CustomEvent(CHANGE_EVENT, {detail: next}),
     );
   }
+
+    useEffect(() => {
+    if (!hydrated) return;
+
+    if (colorMode !== 'light' && colorMode !== 'dark') {
+        return;
+    }
+
+    const favicon = document.querySelector<HTMLLinkElement>(
+        'link[rel="icon"]'
+    );
+
+    if (!favicon) return;
+
+    favicon.href = `/img/favicons/${palette}-${colorMode}.png`;
+    favicon.type = 'image/png';
+
+    }, [palette, colorMode, hydrated]);
 
   const menu = (
     <details className={styles.details}>

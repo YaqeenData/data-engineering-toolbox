@@ -7,7 +7,7 @@ const config: Config = {
   // Website identity
   title: 'Data Engineering Toolbox',
   tagline: 'From fundamentals to real-world engineering decisions.',
-  url: 'https://toolbox.yaqeenalhalal.dev',
+  url: 'https://datum.yaqeenalhalal.dev',
   baseUrl: '/',
 
   future: {
@@ -20,6 +20,8 @@ const config: Config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+
+  favicon: '/img/favicons/teal-light.png',
 
   // Docusaurus presets
   presets: [
@@ -115,6 +117,8 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+
+  
 };
 
 export default config;
