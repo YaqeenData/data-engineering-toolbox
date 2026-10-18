@@ -1,8 +1,6 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
-import Head from '@docusaurus/Head';
 
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import Link from '@docusaurus/Link';
@@ -129,7 +127,6 @@ function LearningPaths(): ReactNode {
 
 // Main homepage
 export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
 
   return (
 
