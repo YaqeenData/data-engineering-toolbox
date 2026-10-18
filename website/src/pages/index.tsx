@@ -1,5 +1,6 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
+import Head from '@docusaurus/Head';
 
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
@@ -131,10 +132,12 @@ export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
 
   return (
-    <Layout
-      title="Home"
-      description={siteConfig.tagline}
-    >
+
+  <Layout
+    title="Home"
+    description="Datum — Data Engineering, Beyond the Basics."
+  >
+
       <main>
         <HomepageHeader />
         <LearningPaths />

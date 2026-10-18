@@ -180,3 +180,85 @@ html[data-theme='dark'] .footer--light {
   background-color: var(--datum-selection-bg);
   color: var(--ifm-font-color-base);
 }
+
+
+/* =========================================
+   DATUM — ADAPTIVE NAVBAR LOGO
+   ========================================= */
+
+/* Default: Ocean Teal */
+html[data-theme='light'] {
+  --datum-navbar-logo: url('/img/favicons/teal-light.png');
+}
+
+html[data-theme='dark'] {
+  --datum-navbar-logo: url('/img/favicons/teal-dark.png');
+}
+
+/* Raspberry */
+html[data-theme='light'][data-accent='raspberry'] {
+  --datum-navbar-logo: url('/img/favicons/raspberry-light.png');
+}
+
+html[data-theme='dark'][data-accent='raspberry'] {
+  --datum-navbar-logo: url('/img/favicons/raspberry-dark.png');
+}
+
+/* Ocean Teal */
+html[data-theme='light'][data-accent='teal'] {
+  --datum-navbar-logo: url('/img/favicons/teal-light.png');
+}
+
+html[data-theme='dark'][data-accent='teal'] {
+  --datum-navbar-logo: url('/img/favicons/teal-dark.png');
+}
+
+/* Terracotta */
+html[data-theme='light'][data-accent='terracotta'] {
+  --datum-navbar-logo: url('/img/favicons/terracotta-light.png');
+}
+
+html[data-theme='dark'][data-accent='terracotta'] {
+  --datum-navbar-logo: url('/img/favicons/terracotta-dark.png');
+}
+
+/* Midnight Blue */
+html[data-theme='light'][data-accent='midnight'] {
+  --datum-navbar-logo: url('/img/favicons/midnight-light.png');
+}
+
+html[data-theme='dark'][data-accent='midnight'] {
+  --datum-navbar-logo: url('/img/favicons/midnight-dark.png');
+}
+
+/* Apply the currently selected logo */
+.navbar__logo img {
+  content: var(--datum-navbar-logo);
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+
+/* =========================================
+   DATUM — ACTIVE NAVIGATION
+   ========================================= */
+
+.navbar__link--active {
+  color: var(--ifm-color-primary);
+  font-weight: 700;
+}
+
+/* Current article in documentation sidebar */
+.theme-doc-sidebar-menu .menu__link--active:not(
+  .menu__link--sublist
+) {
+  color: var(--ifm-color-primary);
+  background: color-mix(
+    in srgb,
+    var(--ifm-color-primary) 12%,
+    transparent
+  );
+  font-weight: 600;
+  border-radius: 8px;
+}

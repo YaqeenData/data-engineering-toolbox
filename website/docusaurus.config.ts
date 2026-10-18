@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   // Website identity
-  title: 'Data Engineering Toolbox',
+  title: 'Datum',
   tagline: 'From fundamentals to real-world engineering decisions.',
   url: 'https://datum.yaqeenalhalal.dev',
   baseUrl: '/',
@@ -51,39 +51,35 @@ const config: Config = {
 
     // Navigation
     navbar: {
-      title: 'Data Engineering Toolbox',
+      title: 'Datum',
+      logo: {
+        alt: 'Datum logo',
+        src: '/img/favicons/teal-light.png',
+        srcDark: '/img/favicons/teal-dark.png',
+      },
 
-      items: [
-        {
-          type: 'doc',
-          docId: 'intro',
-          label: 'Start Here',
-          position: 'left',
-        },
-        {
-          type: 'dropdown',
-          label: 'Roadmaps',
-          position: 'left',
-          items: [
-            {
-              type: 'doc',
-              docId: 'roadmaps/careers/data-engineer',
-              label: 'Data Engineer Roadmap',
-            },
-            {
-              type: 'doc',
-              docId: 'roadmaps/tools/sql',
-              label: 'SQL Roadmap',
-            },
-          ],
-        },
+        
+    
+items: [
+  {
+    label: 'Start Here',
+    to: '/docs/intro',
+    position: 'left',
+    activeBaseRegex: '^/docs/intro/?$',
+  },
+  {
+    label: 'Roadmaps',
+    to: '/docs/category/roadmaps',
+    position: 'left',
+    activeBaseRegex:
+      '^/docs/(category/roadmaps|roadmaps(?:/|$))',
+  },
+  {
+    type: 'custom-appearance',
+    position: 'right',
+  },
+],
 
-        // Custom appearance selector
-        {
-          type: 'custom-appearance',
-          position: 'right',
-        },
-      ],
     },
 
     // Footer
@@ -93,18 +89,12 @@ const config: Config = {
         {
           title: 'Explore',
           items: [
-            {
-              label: 'Start Here',
-              to: '/docs/intro',
-            },
-            {
-              label: 'Data Engineer Roadmap',
-              to: '/docs/roadmaps/careers/data-engineer',
-            },
-            {
-              label: 'SQL Roadmap',
-              to: '/docs/roadmaps/tools/sql',
-            },
+              
+              {
+                label: 'Start Here',
+                to: '/docs/intro',
+                position: 'left',
+              },
           ],
         },
       ],
